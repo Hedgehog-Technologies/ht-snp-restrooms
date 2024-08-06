@@ -26,17 +26,10 @@ jobs:
           echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
           echo "DATE=$(date + '%D')" >> $GITHUB_OUTPUT
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.4.0
-
       - name: Setup node
         uses: actions/setup-node@v4.0.3
         with:
           node-version: 20.11.1
-          cache: 'pnpm'
-          cache-dependency-path: 'web/pnpm-lock.yaml'
 
       - name: Bump manifest version
         run: node .github/actions/bump-manifest-version.js
