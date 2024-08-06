@@ -76,3 +76,7 @@ To make doors latch on close instead of swinging back and forth:
 
 ## Thanks
 - Thanks to [ook_3D](https://www.youtube.com/@ook_3D) and [ultrahacx](https://www.youtube.com/@ultrahacx) for their tutorials and walkthroughs on working with [Sollumz](https://github.com/Sollumz/Sollumz) in [Blender](https://www.blender.org/).
+
+## Support
+
+- Join the [HedgeTech Discord](https://discord.gg/sJggphj5UX) for support
