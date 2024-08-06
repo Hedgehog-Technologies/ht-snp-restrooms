@@ -4,9 +4,9 @@ A custom MLO for the restrooms in Senora National Park in GTAV. Built for FiveM
 ## Summary
 This project is the result of challenging myself to make an MLO from the ground up for the first time. It is small and a little bit goofy, but it felt better to work on a project with reasonable size and scope while following best practices instead of a building a floor plan that was too big for me to want to fill completely.
 
-![](https://img.shields.io/github/downloads/hedgehog-technologies/ht_mlotool/total?logo=github)
-![](https://img.shields.io/github/downloads/hedgehog-technologies/ht_mlotool/latest/total?logo=github)
-![](https://img.shields.io/github/v/release/hedgehog-technologies/ht_mlotool?logo=github)
+![](https://img.shields.io/github/downloads/hedgehog-technologies/ht_ht-snp-restroom/total?logo=github)
+![](https://img.shields.io/github/downloads/hedgehog-technologies/ht_ht-snp-restroom/latest/total?logo=github)
+![](https://img.shields.io/github/v/release/hedgehog-technologies/ht_ht-snp-restroom?logo=github)
 
 ## Preview
 <details>
