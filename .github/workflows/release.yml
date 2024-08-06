@@ -1,0 +1,68 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  create-release:
+    name: Build and create tagged release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install archive tools
+        run: sudo apt install zip
+
+      - name: Checkout source code
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Get variables
+        id: get_vars
+        run: |
+          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "DATE=$(date + '%D')" >> $GITHUB_OUTPUT
+
+      - name: Setup node
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version: 20.11.1
+          cache: 'pnpm'
+          cache-dependency-path: 'web/pnpm-lock.yaml'
+
+      - name: Bump manifest version
+        run: node .github/actions/bump-manifest-version.js
+        env:
+          TGT_RELEASE_VERSION: ${{ github.ref_name }}
+
+      - name: Push manifest change
+        uses: EndBug/add-and-commit@v9.1.3
+        with:
+          add: fxmanifest.lua
+          push: true
+          author_name: Manifest Bumper
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: 'chore: bump manifest version to ${{ github.ref_name }}'
+
+      - name: Bundle files
+        run: |
+          mkdir -p ./temp/ht-snp-restrooms
+          cp ./{LICENSE,fxmanifest.lua} ./temp/ht-snp-restrooms
+          cp -r ./{audio,stream} ./temp/ht-snp-restrooms
+          cd ./temp && zip -r ../ht-snp-restrooms.zip ./ht-snp-restrooms
+
+      - name: Create release
+        uses: marvinpinto/action-automatic-releases@v1.2.1
+        id: auto_release
+        with:
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          title: ${{ env.RELEASE_VERSION }}
+          prerelease: false
+          files: ht-snp-restrooms.zip
+
+        env:
+          CI: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
