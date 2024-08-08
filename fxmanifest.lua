@@ -19,3 +19,7 @@ files {
 
 data_file 'DLC_ITYP_REQUEST' 'stream/ytyp/ht_joshbog.ytyp'
 data_file 'AUDIO_GAMEDATA' 'audio/97049435_game.dat'
+
+escrow_ignore {
+    'stream/**/*.ydr'
+}
